@@ -12,6 +12,7 @@
 
 #include "permutaciones.h"
 #include <stdlib.h>
+#include <stdio.h>
 /***************************************************/
 /* Funcion: aleat_num Fecha:                       */
 /* Autores:                                        */
@@ -47,6 +48,7 @@ int aleat_num(int inf, int sup)
 /***************************************************/
 int* genera_perm(int N)
 {
+
   int *perm;
   int i, random, dum;
   perm = calloc(N,sizeof(int));
@@ -82,6 +84,7 @@ int* genera_perm(int N)
 /***************************************************/
 int** genera_permutaciones(int n_perms, int N)
 {
+
   int **perms;
   int i;
   perms = calloc(n_perms,sizeof(int*));
@@ -89,7 +92,8 @@ int** genera_permutaciones(int n_perms, int N)
   for(i=0;i<n_perms;i++){
     perms[i]=genera_perm(N);
     if(!perms[i]){
-
+      /*TODO: control de erorres*/
     }
   }
+  return perms;
 }

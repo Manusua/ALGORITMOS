@@ -1,6 +1,6 @@
 /**
  *
- * Descripcion: Funciones de cabecera para ordenacion 
+ * Descripcion: Funciones de cabecera para ordenacion
  *
  * Fichero: tiempos.h
  * Autor: Carlos Aguirre.
@@ -20,6 +20,7 @@
 #endif
 
 #include "ordenacion.h"
+#include "permutaciones.h"
 
 /* definiciones de tipos */
 typedef struct tiempo {
