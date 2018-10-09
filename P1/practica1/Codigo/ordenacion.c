@@ -38,5 +38,20 @@ int SelectSort(int* tabla, int ip, int iu)
 
 int SelectSortInv(int* tabla, int ip, int iu)
 {
-  /* vuestro codigo */
+  int i,max,j,temp,count=0;
+  i = ip;
+  while(i<iu){
+    max = i;
+    for(j=i+1;j<=iu;j++){
+      if(tabla[j]>tabla[max]){
+        max = j;
+      }
+      count++;
+    }
+    temp = tabla[i];
+    tabla[i] = tabla[max];
+    tabla[max] = temp;
+    i++;
+  }
+  return count;
 }

@@ -25,7 +25,7 @@ short tiempo_medio_ordenacion(pfunc_ordena metodo,
                               int N,
                               PTIEMPO ptiempo)
 {
-  int i, res, minimo, max, ac;
+  int i, res, minimo, max, ac = 0;
   int **perms;
   clock_t t1,t2;
   perms = genera_permutaciones(n_perms,N);
@@ -33,18 +33,18 @@ short tiempo_medio_ordenacion(pfunc_ordena metodo,
     t1 = clock();
     for(i=0;i<n_perms;i++){
       res = metodo(perms[i],0,N-1);
-      if(res<minimo) minimo = res;
-      if(res>max) max = res;
+      if(res<minimo || i == 0) minimo = res;
+      if(res>max || i == 0) max = res;
       ac +=res;
   }
   t2 = clock();
 
-  ptiempo->N = N;
+  ptiempo->N = n_perms;
   ptiempo->tiempo = (t2-t1)/n_perms;
   ptiempo->min_ob = minimo;
   ptiempo->max_ob = max;
-  ptiempo->medio_ob = ac;
-  ptiempo->n_elems = n_perms;
+  ptiempo->medio_ob = ac/n_perms;
+  ptiempo->n_elems = N;
 
 /*TODO: comprobacion de errores*/
 
@@ -67,7 +67,7 @@ short genera_tiempos_ordenacion(pfunc_ordena metodo, char* fichero,
     return ERR;
   }
   for (i = num_min; i<=num_max; i+=incr){
-    tiempo_medio_ordenacion(metodo,n_perms,i + incr*i,&tiempo[cont]);
+    tiempo_medio_ordenacion(metodo,n_perms,i,&tiempo[cont]);
     cont++;
   }
   guarda_tabla_tiempos(fichero, tiempo,(num_max-num_min)/(incr));
@@ -84,7 +84,6 @@ short guarda_tabla_tiempos(char* fichero, PTIEMPO tiempo, int n_tiempos)
 {
   int i;
   FILE *fp;
-
       printf("LLEGO AQI\n" );
   fp = fopen(fichero, "a");
 

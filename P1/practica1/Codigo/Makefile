@@ -59,7 +59,4 @@ ejercicio4_test:
 
 ejercicio5_test:
 	@echo Ejecutando ejercicio5
-	@./ejercicio5 -num_min 200 -num_max 300 -incr 10 -numP 500 -fichSalida ejercicio5.log
-
-clean:
-	rm -rf *o
+	@./ejercicio5 -num_min 1000 -num_max 2000 -incr 100 -numP 500 -fichSalida ejercicio5.log
